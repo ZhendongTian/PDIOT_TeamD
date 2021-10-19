@@ -38,4 +38,6 @@ dependencies {
 
     implementation 'org.tensorflow:tensorflow-lite-task-vision:0.1.0'
     implementation 'org.tensorflow:tensorflow-lite-task-text:0.1.0'
+
+    implementation 'com.opencsv:opencsv:4.6'
 }
