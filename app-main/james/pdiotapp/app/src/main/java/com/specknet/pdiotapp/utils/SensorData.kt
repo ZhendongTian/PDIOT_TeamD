@@ -46,13 +46,6 @@ data class RESpeckRawPacket(
     val chargingStatus: Boolean = false
 ) : Serializable
 
-data class ThingyRawPacket(
-    val phoneTimestamp: Long,
-    val accelData: AccelerometerReading,
-    val gyroData: GyroscopeReading,
-    val magData: MagnetometerReading
-) : Serializable
-
 /**
  * Data class to hold only the sensor data originating from the RESpeck.
  * All other data is dependent on this raw data, and can be added later in the process.
@@ -92,43 +85,6 @@ data class RESpeckSensorData(
         )
     }
 }
-
-/**
- * Data class to hold only the sensor data originating from the RESpeck.
- * All other data is dependent on this raw data, and can be added later in the process.
- */
-data class ThingySensorData(
-    val phoneTimestamp: Long,
-    val acc: AccelerometerReading = AccelerometerReading(),
-
-    /** IMU data (gyro / magnetometer) may be disabled */
-    val gyro: GyroscopeReading = GyroscopeReading(),
-//    val gyroY: Float = 0f,
-//    val gyroZ: Float = 0f,
-//    val gyroX: Float = 0f,
-    val mag: MagnetometerReading = MagnetometerReading(),
-//    val magX: Float = 0f,
-//    val magY: Float = 0f,
-//    val magZ: Float = 0f
-
-    // need to identify IMU packets, alternatively also whether this one should be ignored
-    /** highFrequency indicates that this data is from between two normal data points.
-     * it should be ignored in non-IMU mode */
-    val highFrequency: Boolean = false
-) : Serializable {
-    // Seq number only between 0..65535 ?
-    fun toThingyLiveData(): ThingyLiveData {
-        // TODO: this is hacky, there should be a RESpeck packet superclass or interface
-        return ThingyLiveData(
-            phoneTimestamp = 0,
-            accelX = acc.x,
-            accelY = acc.y,
-            accelZ = acc.z,
-            gyro = gyro
-        )
-    }
-}
-
 
 data class RESpeckSensorDataCsv(
     val interpolatedPhoneTimestamp: Long,
