@@ -72,14 +72,11 @@ class MLActivity : AppCompatActivity() {
                     Log.d("Live", "onReceive: liveData = " + liveData)
 
                     // get all relevant intent contents
-                    val x = liveData.accelX
-                    val y = liveData.accelY
-                    val z = liveData.accelZ
-                    val gyro_x = liveData.gyro.x
-                    val gyro_y = liveData.gyro.y
-                    val gyro_z = liveData.gyro.z
+                    val acc_x = liveData.accelX
+                    val acc_y = liveData.accelY
+                    val acc_z = liveData.accelZ
                     time += 1
-                    updateGraph("respeck", x, y, z)
+                    updateGraph("respeck acc sensor", acc_x, acc_y, acc_z)
                 }
             }
         }
@@ -101,17 +98,19 @@ class MLActivity : AppCompatActivity() {
 
                 if (action == Constants.ACTION_THINGY_BROADCAST) {
 
+//                    val liveData =
+//                        intent.getSerializableExtra(Constants.THINGY_LIVE_DATA) as ThingyLiveData
                     val liveData =
-                        intent.getSerializableExtra(Constants.THINGY_LIVE_DATA) as ThingyLiveData
+                        intent.getSerializableExtra(Constants.RESPECK_LIVE_DATA) as RESpeckLiveData
                     Log.d("Live", "onReceive: liveData = " + liveData)
 
                     // get all relevant intent contents
-                    val x = liveData.accelX
-                    val y = liveData.accelY
-                    val z = liveData.accelZ
+                    val gyro_x = liveData.gyro.x
+                    val gyro_y = liveData.gyro.y
+                    val gyro_z = liveData.gyro.z
 
                     time += 1
-                    updateGraph("thingy", x, y, z)
+                    updateGraph("respeck gyro sensor", gyro_x, gyro_y, gyro_z)
 
                 }
             }

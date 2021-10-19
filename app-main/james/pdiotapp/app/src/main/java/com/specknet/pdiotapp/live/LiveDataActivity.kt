@@ -79,7 +79,7 @@ class  LiveDataActivity : AppCompatActivity() {
 
 
                     time += 1
-                    updateGraph("respeck", x, y, z)
+                    updateGraph("respeck", acc_x, acc_y, acc_z)
 
                 }
             }
