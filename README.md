@@ -2,6 +2,9 @@
 ## PDIOT Prototype
 Models of different window_size(1-sec, 2-sec, 5-sec, 10-sec) for faster classification.
 
+##  Demo App prototype
+**Check, read and Detect**
+![App Demo](demos/demo.gif)
 
 ##  App Layout
 <!-- 
@@ -12,3 +15,7 @@ Models of different window_size(1-sec, 2-sec, 5-sec, 10-sec) for faster classifi
 **check button and input csv file**     |  **detect button for prediction**
 :------------------------------------:|:-------------------------------------------:
 ![App Layout](demos/layout.png) |  ![Prediction](demos/predict.png)
+
+
+
+

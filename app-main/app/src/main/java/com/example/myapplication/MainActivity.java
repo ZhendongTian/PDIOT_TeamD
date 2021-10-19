@@ -4,25 +4,37 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.AssetFileDescriptor;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.tensorflow.lite.Interpreter;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+
+import com.opencsv.CSVReader;
+import java.io.FileReader;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText input;
     private TextView output;
     Interpreter tflite;
+    int datapoint = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         output = (TextView) findViewById(R.id.output);
         Button button = (Button) findViewById(R.id.button);
         Button buttonDetect = (Button) findViewById(R.id.buttonDetect);
+        Button buttonRead = (Button) findViewById(R.id.buttonRead);
+
+        ArrayList<Respeck> respeckList = generateList();
 
         try {
             tflite = new Interpreter(loadModelFile());
@@ -52,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                float prediction = inference(input.getText().toString());
-                Object[] results = inference();
+                Object[] results = inference(respeckList);
 
                 int class_index = (Integer) results[0];
                 float confidence = (Float) results[1];
@@ -67,13 +82,86 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        buttonRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                output.setText("datapoint "+ datapoint +"\n"+ respeckList.get(datapoint).getAcc_x() + " , "+respeckList.get(datapoint).getAcc_y() + " , "+
+                        respeckList.get(datapoint).getAcc_z() + " , "+respeckList.get(datapoint).getGyro_x() + " , "+
+                        respeckList.get(datapoint).getGyro_y() + " , "+respeckList.get(datapoint).getGyro_z() + " ! ");
+                datapoint += 1;
+                if(datapoint>= respeckList.size()){
+                    datapoint=0;
+                }
+
+            }
+        });
+
     }
 
-    public Object[] inference(){    //String s
+    private ArrayList<Respeck> generateList() {
+        ArrayList<Respeck> respeckList = new ArrayList();
+        InputStream is = getResources().openRawResource(R.raw.standing);
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(is, Charset.forName("UTF-8")));
+        String line = "";
+
+        try {
+            while ((line = reader.readLine()) != null) {
+                // Split the line into different tokens (using the comma as a separator).
+                String[] tokens = line.split(",");
+
+                // Read the data and store it in the WellData POJO.
+                Respeck respeck = new Respeck();
+                respeck.setAcc_x(tokens[1]);
+                respeck.setAcc_y(tokens[2]);
+                respeck.setAcc_z(tokens[3]);
+                respeck.setGyro_x(tokens[4]);
+                respeck.setGyro_y(tokens[5]);
+                respeck.setGyro_z(tokens[6]);
+                respeckList.add(respeck);
+
+                Log.d("MainActivity" ,"Just Created " + respeck);
+                Log.d("myTag" ,"Size of respeck list " + respeckList.size());
+            }
+        } catch (IOException e1) {
+            Log.e("MainActivity", "Error" + line, e1);
+            e1.printStackTrace();
+        }
+        return respeckList;
+    }
+
+    public Object[] inference(ArrayList<Respeck> respeckList){    //String s
         float[][][] inputValue = new float[1][50][6];
         for(int i=0; i<50; i++){
             for(int j=0; j<6; j++){
-                inputValue[0][i][j] = (float) 0;
+                String respeckDataPoint = "";
+//                Log.d("myTag", i+" , "+ j);
+                switch (j){
+                    case 0:
+                        respeckDataPoint = respeckList.get(i+1).getAcc_x();
+                        break;
+                    case 1:
+                        respeckDataPoint = respeckList.get(i+1).getAcc_y();
+                        break;
+                    case 2:
+                        respeckDataPoint = respeckList.get(i+1).getAcc_z();
+                        break;
+                    case 3:
+                        respeckDataPoint = respeckList.get(i+1).getGyro_x();
+                        break;
+                    case 4:
+                        respeckDataPoint = respeckList.get(i+1).getGyro_y();
+                        break;
+                    case 5:
+                        respeckDataPoint = respeckList.get(i+1).getGyro_z();
+                        break;
+                    default:
+                        respeckDataPoint = "";
+                        break;
+                }
+
+                inputValue[0][i][j] =  (float) Float.valueOf(respeckDataPoint)  ;//(float) 0;
             }
         }
 //        inputValue[0] = Float.valueOf(s);
