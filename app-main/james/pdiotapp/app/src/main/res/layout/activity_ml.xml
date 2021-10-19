@@ -52,10 +52,10 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/ml_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="abc"
+        android:text="Data Processing Suite"
         app:layout_constraintBottom_toTopOf="@+id/respeck_graphs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
