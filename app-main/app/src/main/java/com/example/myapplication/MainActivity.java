@@ -73,9 +73,24 @@ public class MainActivity extends AppCompatActivity {
                 float confidence = (Float) results[1];
                 Log.d("myTag", Integer.toString(class_index) + " , "+ Float.toString(confidence));
 
-                String[] motion_list = {"Standing",
+                String[] motion_list = {"Sitting",
                         "Sitting bent forward",
-                        "Walking at normal speed"};
+                        "Sitting bent backward",
+                        "Standing",
+                        "Lying down left",
+                        "Lying down right",
+                        "Lying down on stomach",
+                        "Lying down on back",
+                        "Walking at normal speed",
+                        "Running",
+                        "Climbing stairs",
+                        "Descending stairs",
+                        "Desk work",
+                        "Movement",
+                        "Falling on knees",
+                        "Falling on the back",
+                        "Falling on the left",
+                        "Falling on the right"};
                 String motion = motion_list[class_index];
 
                 output.setText(motion+", with confidence: "+Float.toString(confidence)); // Integer.toString(prediction)
@@ -101,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Respeck> generateList() {
         ArrayList<Respeck> respeckList = new ArrayList();
-        InputStream is = getResources().openRawResource(R.raw.standing);
+        InputStream is = getResources().openRawResource(R.raw.lyingback);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, Charset.forName("UTF-8")));
         String line = "";
@@ -167,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
 //        inputValue[0] = Float.valueOf(s);
         Log.d("myTag", Float.toString(inputValue[0][49][5]));
 
-        float[][] outputValue = new float[1][3];
+        float[][] outputValue = new float[1][18];
         tflite.run(inputValue, outputValue);
         float inferedValue = outputValue[0][0];
         Log.d("myTag", Float.toString(outputValue[0][0]));
@@ -192,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private MappedByteBuffer loadModelFile() throws IOException {
-        AssetFileDescriptor fileDescriptor = this.getAssets().openFd("cnn.tflite");
+        AssetFileDescriptor fileDescriptor = this.getAssets().openFd("cnn18.tflite");
         FileInputStream fileInputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
         FileChannel fileChannel = fileInputStream.getChannel();
         long startoffSets = fileDescriptor.getStartOffset();
