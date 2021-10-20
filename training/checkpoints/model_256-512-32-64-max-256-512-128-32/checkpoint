@@ -1,0 +1,2 @@
+model_checkpoint_path: "model_256-512-32-64-max-256-512-128-32"
+all_model_checkpoint_paths: "model_256-512-32-64-max-256-512-128-32"

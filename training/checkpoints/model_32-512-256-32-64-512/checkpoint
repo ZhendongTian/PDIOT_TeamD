@@ -1,0 +1,2 @@
+model_checkpoint_path: "model_32-512-256-32-64-512"
+all_model_checkpoint_paths: "model_32-512-256-32-64-512"
