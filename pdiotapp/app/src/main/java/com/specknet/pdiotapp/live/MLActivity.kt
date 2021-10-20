@@ -337,16 +337,18 @@ class MLActivity : AppCompatActivity() {
 
         var starttimestep = buffersize-timestep
         if(acc_xs.size>=buffersize) {
-            for (i in 0..49) {
+            for (i in 0..(timestep-1)) {
                 inputValue[0][i][0] = acc_xs.get(starttimestep + i);
                 inputValue[0][i][1] = acc_ys.get(starttimestep + i);
                 inputValue[0][i][2] = acc_zs.get(starttimestep + i);
                 inputValue[0][i][3] = gyro_xs.get(starttimestep + i);
                 inputValue[0][i][4] = gyro_ys.get(starttimestep + i);
                 inputValue[0][i][5] = gyro_zs.get(starttimestep + i);
+
+                Log.d("myTag", i.toString())
             }
         }else {
-            for (i in 0..49) {
+            for (i in 0..(timestep-1)) {
                 inputValue[0][i][0] = 0f;
                 inputValue[0][i][1] = 0f;
                 inputValue[0][i][2] = 0f;
