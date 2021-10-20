@@ -344,8 +344,7 @@ class MLActivity : AppCompatActivity() {
                 inputValue[0][i][3] = gyro_xs.get(starttimestep + i);
                 inputValue[0][i][4] = gyro_ys.get(starttimestep + i);
                 inputValue[0][i][5] = gyro_zs.get(starttimestep + i);
-
-                Log.d("myTag", i.toString())
+//                Log.d("myTag", i.toString())
             }
         }else {
             for (i in 0..(timestep-1)) {
