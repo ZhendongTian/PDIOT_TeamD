@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
@@ -36,6 +37,8 @@ class MLActivity : AppCompatActivity() {
     var timestep: Int = 50
 
     lateinit var activity: TextView
+    lateinit var modelname2: TextView
+    lateinit var modelname1: TextView
     var acc_xs = arrayListOf<Float>()
     var acc_ys = arrayListOf<Float>()
     var acc_zs = arrayListOf<Float>()
@@ -81,6 +84,8 @@ class MLActivity : AppCompatActivity() {
 //        activity.text = "Movement"
         Log.d("myTag", activity.text as String)
 
+        modelname2 = findViewById(R.id.model2)
+        modelname1 = findViewById(R.id.model1)
 
         //get the spinner from the xml.
         val dropdown = findViewById<Spinner>(R.id.spinner1)
@@ -101,6 +106,8 @@ class MLActivity : AppCompatActivity() {
                 simpleModelName = dropdown.selectedItem.toString()
                 simpleModelID = dropdown.selectedItemId.toInt()
                 Log.d("myTag", simpleModelID.toString())
+                modelname2.setText(simpleModelName)
+                modelname2.setTextColor(Color.BLUE)
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // write code to perform some action
@@ -108,7 +115,7 @@ class MLActivity : AppCompatActivity() {
         }
 
         val dropdown2 = findViewById<Spinner>(R.id.spinner2)
-        val items2 = arrayOf("CNN", "LSTM", "GRU")
+        val items2 = arrayOf("CNN", "LSTM", "GRU", "biLSTM")
         val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items2)
 //set the spinners adapter to the previously created one.
         dropdown2.adapter = adapter2
@@ -118,6 +125,8 @@ class MLActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>,
                                         view: View, position: Int, id: Long) {
                 baseModelName = dropdown2.selectedItem.toString()
+                modelname1.setText(baseModelName)
+                modelname1.setTextColor(Color.MAGENTA);
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
             }
