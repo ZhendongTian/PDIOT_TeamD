@@ -21,7 +21,6 @@ public class Constants {
     public static final String PREFERENCES_FILE = "com.specknet.pdiotapp.PREFERENCE_FILE";
     public static final String RESPECK_MAC_ADDRESS_PREF = "respeck_id_pref";
     public static final String RESPECK_VERSION = "respeck_version";
-    public static final String THINGY_MAC_ADDRESS_PREF = "thingy_id_pref";
 
     //The REQUEST_ENABLE_BT constant passed to startActivityForResult(android.content.Intent, int)
     // is a locally-defined integer (which must be greater than 0) that the system passes back
@@ -30,7 +29,6 @@ public class Constants {
     public static final int REQUEST_CODE_PERMISSIONS = 4;
 
     public static final String RECORDING_CSV_HEADER_RESPECK = "timestamp,accel_x,accel_y,accel_z,gyro_x,gyro_y,gyro_z";
-    public static final String RECORDING_CSV_HEADER_THINGY = "timestamp,accel_x,accel_y,accel_z,gyro_x,gyro_y,gyro_z,mag_x,mag_y,mag_z";
 
     // activity mappings
     public static final Map<String, Integer> ACTIVITY_NAME_TO_CODE_MAPPING = new HashMap<String, Integer>() {{
@@ -123,7 +121,6 @@ public class Constants {
     // Information for config content provider
     public static class Config {
         public static final String RESPECK_UUID = "RESpeckUUID";
-        public static final String THINGY_UUID = "ThingyUUID";
     }
 
     public static final String RESPECK_DATA_DIRECTORY_NAME = "/RESpeck/";
@@ -134,14 +131,5 @@ public class Constants {
             "com.specknet.respeck.RESPECK_LIVE_BROADCAST";
     public static final float MINUTES_FOR_MEDIAN_CALC = 500;
     public static final SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
-
-    public static final String THINGY_MOTION_CHARACTERISTIC = "ef680406-9b35-4933-9b10-52ffa9740042";
-
-    public static final String ACTION_THINGY_BROADCAST = "com.specknet.pdiotapp.THINGY_BROADCAST";
-    public static final String ACTION_THINGY_CONNECTED = "com.specknet.pdiotapp.THINGY_CONNECTED";
-    public static final String ACTION_THINGY_DISCONNECTED = "com.specknet.pdiotapp.THINGY_DISCONNECTED";
-    public static final String THINGY_LIVE_DATA = "thingy_live_data";
-
-
 
 }

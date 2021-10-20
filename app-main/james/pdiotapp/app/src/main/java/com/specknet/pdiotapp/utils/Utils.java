@@ -38,12 +38,6 @@ public class Utils {
         return sharedPreferences.getString(Constants.RESPECK_MAC_ADDRESS_PREF, "");
     }
 
-    public static String getThingyUUID(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREFERENCES_FILE, Context.MODE_PRIVATE);
-
-        return sharedPreferences.getString(Constants.THINGY_MAC_ADDRESS_PREF, "");
-    }
-
 
     public static long getUnixTimestamp() {
         return System.currentTimeMillis();
@@ -104,21 +98,4 @@ public class Utils {
                 mValue[offset + 1]), 16);
 
     }
-
-    public static float[] decodeThingyPacket(byte[] values) {
-        float accel_x = (float) (getIntValue(values, 0)) / (1 << 10);
-        float accel_y = (float) (getIntValue(values, 2)) / (1 << 10);
-        float accel_z = (float) (getIntValue(values, 4)) / (1 << 10);
-
-        float gyro_x = (float) (getIntValue(values, 6)) / (1 << 5);
-        float gyro_y = (float) (getIntValue(values, 8)) / (1 << 5);
-        float gyro_z = (float) (getIntValue(values, 10)) / (1 << 5);
-
-        float mag_x = (float) (getIntValue(values, 12)) / (1 << 4);
-        float mag_y = (float) (getIntValue(values, 14)) / (1 << 4);
-        float mag_z = (float) (getIntValue(values, 16)) / (1 << 4);
-
-        return new float[]{accel_x, accel_y, accel_z, gyro_x, gyro_y, gyro_z, mag_x, mag_y, mag_z};
-    }
-
 }
