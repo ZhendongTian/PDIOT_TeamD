@@ -52,4 +52,18 @@
     <string name="thingy_accel">Accel = (%1$.3f, %2$.3f, %3$.3f)</string>
     <string name="thingy_gyro">Gyro = (%1$.3f, %2$.3f, %3$.3f)</string>
     <string name="thingy_mag">Mag = (%1$.3f, %2$.3f, %3$.3f)</string>
+
+
+<!--    <string-array name="model_array">-->
+<!--        <item>CNN2s</item>-->
+<!--        <item>CNN4s</item>-->
+<!--        <item>CNN8s</item>-->
+<!--        <item>LSTM</item>-->
+<!--        <item>GRU</item>-->
+<!--        <item>biRNN</item>-->
+<!--&lt;!&ndash;            <item>Uranus</item>&ndash;&gt;-->
+<!--&lt;!&ndash;            <item>Neptune</item>&ndash;&gt;-->
+<!--    </string-array>-->
+
+
 </resources>

@@ -10,8 +10,7 @@ import android.os.HandlerThread
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.charts.LineChart
@@ -82,8 +81,52 @@ class MLActivity : AppCompatActivity() {
 //        activity.text = "Movement"
         Log.d("myTag", activity.text as String)
 
+
+        //get the spinner from the xml.
+        val dropdown = findViewById<Spinner>(R.id.spinner1)
+//create a list of items for the spinner.
+        val items = arrayOf("2s", "4s", "8s")
+//create an adapter to describe how the items are displayed, adapters are used in several places in android.
+//There are multiple variations of this, but this is the basic variant.
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
+//set the spinners adapter to the previously created one.
+        dropdown.adapter = adapter
+        var simpleModelName = dropdown.selectedItem.toString()  //default is the first one in the dropbox
+        var simpleModelID: Int = dropdown.selectedItemId.toInt()
+
+        dropdown.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>,
+                                        view: View, position: Int, id: Long) {
+                simpleModelName = dropdown.selectedItem.toString()
+                simpleModelID = dropdown.selectedItemId.toInt()
+                Log.d("myTag", simpleModelID.toString())
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+            }
+        }
+
+        val dropdown2 = findViewById<Spinner>(R.id.spinner2)
+        val items2 = arrayOf("CNN", "LSTM", "GRU")
+        val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items2)
+//set the spinners adapter to the previously created one.
+        dropdown2.adapter = adapter2
+        var baseModelName = dropdown2.selectedItem.toString()
+        dropdown2.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>,
+                                        view: View, position: Int, id: Long) {
+                baseModelName = dropdown2.selectedItem.toString()
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
+
+
+
         try {
-            tflite = Interpreter(loadModelFile())
+            tflite = Interpreter(loadModelFile(baseModelName,simpleModelName))
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -92,7 +135,7 @@ class MLActivity : AppCompatActivity() {
         val detect = findViewById<View>(R.id.detect) as Button
         detect.setOnClickListener(View.OnClickListener {
             //                float prediction = inference(input.getText().toString());
-            val results: Array<Any> = inference(acc_xs, acc_ys, acc_zs, gyro_xs, gyro_ys, gyro_zs)
+            val results: Array<Any> = inference(baseModelName,simpleModelID, simpleModelName,acc_xs, acc_ys, acc_zs, gyro_xs, gyro_ys, gyro_zs)
             val class_index = results[0] as Int
             val confidence = results[1] as Float
             Log.d(
@@ -237,8 +280,8 @@ class MLActivity : AppCompatActivity() {
 
 
     @Throws(IOException::class)
-    private fun loadModelFile(): MappedByteBuffer {
-        val fileDescriptor = this.assets.openFd("cnn18.tflite")
+    private fun loadModelFile(baseModelName: String, simpleModelName: String): MappedByteBuffer {
+        val fileDescriptor = this.assets.openFd(baseModelName+simpleModelName+".tflite")
         val fileInputStream = FileInputStream(fileDescriptor.fileDescriptor)
         val fileChannel = fileInputStream.channel
         val startoffSets = fileDescriptor.startOffset
@@ -250,6 +293,9 @@ class MLActivity : AppCompatActivity() {
 
 
     fun inference(
+        baseModelName: String,
+        simpleModelID: Int,
+        simpleModelName: String,
         acc_xs: ArrayList<Float>,
         acc_ys: ArrayList<Float>,
         acc_zs: ArrayList<Float>,
@@ -257,6 +303,17 @@ class MLActivity : AppCompatActivity() {
         gyro_ys: ArrayList<Float>,
         gyro_zs: ArrayList<Float>
     ): Array<Any> {
+
+        try {
+            tflite = Interpreter(loadModelFile(baseModelName,simpleModelName))
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        timestep = Math.pow(2.0, ((simpleModelID+1).toDouble())).toInt() * 25
+        Log.d("myTag", timestep.toString())
+
+
+
         // A 6x5 array of Int, all set to 0.
 //        var inputValue = Array(1) { Array(50) { Array(6) { 0f } } }
 //        var m = Array(6, {i -> Array(5, {j -> 0})})
