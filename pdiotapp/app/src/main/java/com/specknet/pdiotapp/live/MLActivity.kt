@@ -115,7 +115,7 @@ class MLActivity : AppCompatActivity() {
         }
 
         val dropdown2 = findViewById<Spinner>(R.id.spinner2)
-        val items2 = arrayOf("CNN", "LSTM", "GRU", "biLSTM")
+        val items2 = arrayOf("CNN", "LSTM", "GRU", "biLSTM", "CNNbiLSTM")
         val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items2)
 //set the spinners adapter to the previously created one.
         dropdown2.adapter = adapter2
@@ -319,7 +319,7 @@ class MLActivity : AppCompatActivity() {
             e.printStackTrace()
         }
         timestep = Math.pow(2.0, ((simpleModelID+1).toDouble())).toInt() * 25
-        Log.d("myTag", timestep.toString())
+        Log.d("myTag", timestep.toString() + "timesteps (sliding window)")
 
 
 
