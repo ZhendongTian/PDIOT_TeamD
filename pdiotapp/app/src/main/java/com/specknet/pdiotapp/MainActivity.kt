@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.google.android.material.snackbar.Snackbar
@@ -22,6 +23,7 @@ import com.specknet.pdiotapp.live.MLActivity
 import com.specknet.pdiotapp.onboarding.OnBoardingActivity
 import com.specknet.pdiotapp.utils.Constants
 import com.specknet.pdiotapp.utils.Utils
+import com.specknet.pdiotapp.help.HelpActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +33,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var pairingButton: Button
     lateinit var recordButton: Button
     lateinit var mlButton: Button
+
+    //image buttons
+    lateinit var iliveProcessingButton: AppCompatImageButton
+    lateinit var ipairingButton: AppCompatImageButton
+    lateinit var irecordButton: AppCompatImageButton
+    lateinit var imlButton: AppCompatImageButton
+    lateinit var ihelpButton: AppCompatImageButton
 
     // permissions
     lateinit var permissionAlertDialog: AlertDialog.Builder
@@ -68,6 +77,14 @@ class MainActivity : AppCompatActivity() {
         recordButton = findViewById(R.id.record_button)
         mlButton = findViewById(R.id.ml_button)
 
+        //initialize image buttons
+        iliveProcessingButton = findViewById(R.id.ilive_button)
+        ipairingButton = findViewById(R.id.ible_button)
+        irecordButton = findViewById(R.id.irecord_button)
+        imlButton = findViewById(R.id.iml_button)
+        ihelpButton = findViewById(R.id.ihelp_button)
+
+
         permissionAlertDialog = AlertDialog.Builder(this)
 
         setupClickListeners()
@@ -100,6 +117,31 @@ class MainActivity : AppCompatActivity() {
 
         mlButton.setOnClickListener {
             val intent = Intent(this, MLActivity::class.java)
+            startActivity(intent)
+        }
+
+        iliveProcessingButton.setOnClickListener {
+            val intent = Intent(this, LiveDataActivity::class.java)
+            startActivity(intent)
+        }
+
+        ipairingButton.setOnClickListener {
+            val intent = Intent(this, ConnectingActivity::class.java)
+            startActivity(intent)
+        }
+
+        irecordButton.setOnClickListener {
+            val intent = Intent(this, RecordingActivity::class.java)
+            startActivity(intent)
+        }
+
+        imlButton.setOnClickListener {
+            val intent = Intent(this, MLActivity::class.java)
+            startActivity(intent)
+        }
+
+        ihelpButton.setOnClickListener {
+            val intent = Intent(this, HelpActivity::class.java)
             startActivity(intent)
         }
     }
@@ -268,11 +310,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        if (id == R.id.show_tutorial) {
+        /*if (id == R.id.show_tutorial) {
             val introIntent = Intent(this, OnBoardingActivity::class.java)
             startActivity(introIntent)
             return true
-        }
+        }*/
 
         return super.onOptionsItemSelected(item)
     }

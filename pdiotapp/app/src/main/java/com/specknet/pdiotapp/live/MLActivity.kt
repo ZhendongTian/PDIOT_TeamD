@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -39,6 +40,12 @@ class MLActivity : AppCompatActivity() {
     lateinit var activity: TextView
     lateinit var modelname2: TextView
     lateinit var modelname1: TextView
+    lateinit var spinner1: Spinner
+    lateinit var spinner2: Spinner
+
+    lateinit var activeImage: ImageView
+
+
     var acc_xs = arrayListOf<Float>()
     var acc_ys = arrayListOf<Float>()
     var acc_zs = arrayListOf<Float>()
@@ -46,6 +53,9 @@ class MLActivity : AppCompatActivity() {
     var gyro_xs = arrayListOf<Float>()
     var gyro_ys = arrayListOf<Float>()
     var gyro_zs = arrayListOf<Float>()
+
+    var spin1 = ""
+    var spin2 = ""
 
 
     // global graph variables
@@ -84,33 +94,45 @@ class MLActivity : AppCompatActivity() {
 //        activity.text = "Movement"
         Log.d("myTag", activity.text as String)
 
+        //load activity image
+        activeImage = findViewById(R.id.activeimage)
+
         modelname2 = findViewById(R.id.model2)
         modelname1 = findViewById(R.id.model1)
 
         //get the spinner from the xml.
-        val dropdown = findViewById<Spinner>(R.id.spinner1)
+        spinner1 = findViewById<Spinner>(R.id.spinner1)
 //create a list of items for the spinner.
         val items = arrayOf("2s", "4s", "8s", "custom")
 //create an adapter to describe how the items are displayed, adapters are used in several places in android.
 //There are multiple variations of this, but this is the basic variant.
+
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
 //set the spinners adapter to the previously created one.
-        dropdown.adapter = adapter
-        var simpleModelName = dropdown.selectedItem.toString()  //default is the first one in the dropbox
-        var simpleModelID: Int = dropdown.selectedItemId.toInt()
+        spinner1.adapter = adapter
 
-        dropdown.onItemSelectedListener = object :
+//set the spinners adapter to the previously created one.
+
+        var simpleModelName = spinner1.selectedItem.toString()  //default is the first one in the dropbox
+        var simpleModelID: Int = spinner1.selectedItemId.toInt()
+        modelname1.setText("Window Size")
+        modelname1.setTextColor(Color.BLUE);
+        modelname2.setText("Model Type")
+        modelname2.setTextColor(Color.MAGENTA);
+
+
+        spinner1.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>,
                                         view: View, position: Int, id: Long) {
-                simpleModelName = dropdown.selectedItem.toString()
-                simpleModelID = dropdown.selectedItemId.toInt()
+                simpleModelName = spinner1.selectedItem.toString()
+                simpleModelID = spinner1.selectedItemId.toInt()
                 Log.d("myTag", simpleModelID.toString())
-                modelname2.setText(simpleModelName)
-                modelname2.setTextColor(Color.BLUE)
+                modelname1.setText(simpleModelName)
+                modelname1.setTextColor(Color.BLUE)
+
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
             }
         }
 
@@ -125,8 +147,8 @@ class MLActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>,
                                         view: View, position: Int, id: Long) {
                 baseModelName = dropdown2.selectedItem.toString()
-                modelname1.setText(baseModelName)
-                modelname1.setTextColor(Color.MAGENTA);
+                modelname2.setText(baseModelName)
+                modelname2.setTextColor(Color.MAGENTA);
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
             }
@@ -173,6 +195,7 @@ class MLActivity : AppCompatActivity() {
             )
             val motion = motion_list[class_index]
             activity.setText(motion + ", confidence: " + "${confidence.format(3)}") // Integer.toString(prediction)
+            Glide.with(this).asGif().load(R.drawable.lyingdownleft).into(activeImage);
         })
 
 
