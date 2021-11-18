@@ -84,6 +84,27 @@ class MLActivity : AppCompatActivity() {
     val filterTestRespeck = IntentFilter(Constants.ACTION_RESPECK_LIVE_BROADCAST)
     val filterTestThingy = IntentFilter(Constants.ACTION_THINGY_BROADCAST)
 
+    /*val gif_list = arrayOf(
+         R.drawable.walkinggif,
+        "Sitting bent forward",
+        "Sitting bent backward",
+        "Standing",
+        "Lying down left",
+        "Lying down right",
+        "Lying down on stomach",
+        "Lying down on back",
+        "Walking at normal speed",
+        "Running",
+        "Climbing stairs",
+        "Descending stairs",
+        "Desk work",
+        "Movement",
+        "Falling on knees",
+        "Falling on the back",
+        "Falling on the left",
+        "Falling on the right"
+    )*/
+
 
     @OptIn(ExperimentalStdlibApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -194,8 +215,11 @@ class MLActivity : AppCompatActivity() {
                 "Falling on the right"
             )
             val motion = motion_list[class_index]
+            //val gif = gif_list[class_index]
             activity.setText(motion + ", confidence: " + "${confidence.format(3)}") // Integer.toString(prediction)
             Glide.with(this).asGif().load(R.drawable.lyingdownleft).into(activeImage);
+
+            //writeToHistory(motion)
         })
 
 
@@ -538,6 +562,11 @@ class MLActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    fun writeToHistory(motion : String){
+        var formattedDate = ""
+        val filename = "${"a"}_${formattedDate}.csv"
     }
 
 

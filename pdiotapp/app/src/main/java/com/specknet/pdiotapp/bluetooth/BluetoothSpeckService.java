@@ -13,7 +13,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
@@ -28,7 +27,7 @@ import androidx.core.app.NotificationCompat;
 import com.polidea.rxandroidble.RxBleClient;
 import com.polidea.rxandroidble.RxBleConnection;
 import com.polidea.rxandroidble.RxBleDevice;
-import com.specknet.pdiotapp.MainActivity;
+import com.specknet.pdiotapp.HomeActivity;
 import com.specknet.pdiotapp.R;
 import com.specknet.pdiotapp.utils.Constants;
 import com.specknet.pdiotapp.utils.RESpeckPacketHandler;
@@ -37,7 +36,6 @@ import com.specknet.pdiotapp.utils.ThingyPacketHandler;
 import com.specknet.pdiotapp.utils.Utils;
 
 import java.util.Arrays;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
@@ -156,7 +154,7 @@ public class BluetoothSpeckService extends Service {
     private void startInForeground() {
         Log.d(TAG, "startInForeground: here");
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) {
-            Intent notificationIntent = new Intent(this, MainActivity.class);
+            Intent notificationIntent = new Intent(this, HomeActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
             Notification notification = new Notification.Builder(this).setContentTitle(

@@ -12,10 +12,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.google.android.material.snackbar.Snackbar
+import com.parse.ParseUser
 import com.specknet.pdiotapp.bluetooth.BluetoothSpeckService
 import com.specknet.pdiotapp.bluetooth.ConnectingActivity
 import com.specknet.pdiotapp.live.LiveDataActivity
@@ -24,15 +26,17 @@ import com.specknet.pdiotapp.onboarding.OnBoardingActivity
 import com.specknet.pdiotapp.utils.Constants
 import com.specknet.pdiotapp.utils.Utils
 import com.specknet.pdiotapp.help.HelpActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_login.*
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     // buttons and textviews
     lateinit var liveProcessingButton: Button
     lateinit var pairingButton: Button
     lateinit var recordButton: Button
     lateinit var mlButton: Button
+    lateinit var logoutButton: Button
 
     //image buttons
     lateinit var iliveProcessingButton: AppCompatImageButton
@@ -58,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
 
         // check whether the onboarding screen should be shown
         val sharedPreferences = getSharedPreferences(Constants.PREFERENCES_FILE, Context.MODE_PRIVATE)
@@ -76,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         pairingButton = findViewById(R.id.ble_button)
         recordButton = findViewById(R.id.record_button)
         mlButton = findViewById(R.id.ml_button)
+        logoutButton = findViewById(R.id.logout_button)
 
         //initialize image buttons
         iliveProcessingButton = findViewById(R.id.ilive_button)
@@ -118,6 +123,14 @@ class MainActivity : AppCompatActivity() {
         mlButton.setOnClickListener {
             val intent = Intent(this, MLActivity::class.java)
             startActivity(intent)
+        }
+
+        logoutButton.setOnClickListener {
+            ParseUser.logOutInBackground {
+            if (it == null) {
+                Toast.makeText(this, "User Logged Out", Toast.LENGTH_SHORT).show();
+                val intent = Intent(this, LoginActivity::class.java);
+                startActivity(intent)}}
         }
 
         iliveProcessingButton.setOnClickListener {

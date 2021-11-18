@@ -1,4 +1,4 @@
-package com.specknet.pdiotapp.onboarding
+package com.specknet.pdiotapp.help
 
 import android.animation.ArgbEvaluator
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +15,7 @@ import androidx.viewpager.widget.ViewPager
 import com.specknet.pdiotapp.R
 import com.specknet.pdiotapp.ui.main.SectionsPagerAdapter
 
-class OnBoardingActivity : AppCompatActivity() {
+class RecordingHelpScreen : AppCompatActivity() {
 
     lateinit var mSectionsPagerAdapter: SectionsPagerAdapter
     private lateinit var mViewPager: ViewPager
@@ -66,7 +66,7 @@ class OnBoardingActivity : AppCompatActivity() {
         mViewPager.setCurrentItem(page)
         updateIndicators(page)
 
-        val color1 = ContextCompat.getColor(this, R.color.blue)
+        val color1 = ContextCompat.getColor(this, R.color.cyan)
         val color2 = ContextCompat.getColor(this, R.color.orange)
         val color3 = ContextCompat.getColor(this, R.color.green)
 
@@ -135,7 +135,7 @@ class OnBoardingActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_pager, menu)
         return true
     }
@@ -147,5 +147,5 @@ class OnBoardingActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
-    }
+    }*/
 }

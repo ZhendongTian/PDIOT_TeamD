@@ -12,12 +12,14 @@
 
         <ImageView
             android:id="@+id/section_img"
-            android:layout_width="192dp"
-            android:layout_height="192dp"
+            android:layout_width="302dp"
+            android:layout_height="399dp"
             android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:alpha="0.30"
+            android:layout_marginBottom="60dp"
+            android:alpha="1.0"
             android:background="@drawable/ic_bluetooth_icon"
+            android:maxWidth="100dp"
+            android:maxHeight="100dp"
             android:scaleType="fitCenter" />
 
 

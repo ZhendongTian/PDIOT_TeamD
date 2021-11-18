@@ -21,9 +21,12 @@ class PlaceholderFragment : Fragment() {
     lateinit var img: ImageView
     lateinit var description: TextView
 
-    var bgs = arrayOf(R.drawable.ic_bluetooth_icon, R.drawable.ic_recording_icon, R.drawable.ic_live_data_icon)
-    var texts = arrayOf(R.string.section_bluetooth, R.string.section_record, R.string.section_live)
-    var titles = arrayOf(R.string.section_bluetooth_title, R.string.section_record_title, R.string.section_live_title)
+    //var bgs = arrayOf(R.drawable.ic_bluetooth_icon, R.drawable.ic_recording_icon, R.drawable.ic_live_data_icon)
+    var bgs = arrayOf(R.drawable.recordingmain, R.drawable.recordingsensors, R.drawable.recordingactvities)
+    //var texts = arrayOf(R.string.section_bluetooth, R.string.section_record, R.string.section_live)
+    var texts = arrayOf(R.string.section_bluetooth2, R.string.section_record2, R.string.section_live2)
+    //var titles = arrayOf(R.string.section_bluetooth_title, R.string.section_record_title, R.string.section_live_title)
+    var titles = arrayOf(R.string.section_bluetooth_title2, R.string.section_record_title2, R.string.section_live_title2)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

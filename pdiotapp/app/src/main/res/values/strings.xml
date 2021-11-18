@@ -20,9 +20,18 @@
     <string name="section_bluetooth">Welcome to the PDIoT App. Use it to connect to your Respeck or Thingy devices.</string>
     <string name="section_record">You can record data from the sensors in a locally stored csv file.</string>
     <string name="section_live">You can also view the live data once the sensors are connected.</string>
+
+    <string name="section_bluetooth2">Recording Activity Breakdown</string>
+    <string name="section_record2">Choose sensor by pressing this dropdown</string>
+    <string name="section_live2">Choose activity type by pressing this dropdown</string>
+
     <string name="section_bluetooth_title">Connect</string>
     <string name="section_record_title">Record</string>
     <string name="section_live_title">View</string>
+
+    <string name="section_bluetooth_title2">Main</string>
+    <string name="section_record_title2">Sensor</string>
+    <string name="section_live_title2">Activity Type</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -52,6 +61,12 @@
     <string name="thingy_accel">Accel = (%1$.3f, %2$.3f, %3$.3f)</string>
     <string name="thingy_gyro">Gyro = (%1$.3f, %2$.3f, %3$.3f)</string>
     <string name="thingy_mag">Mag = (%1$.3f, %2$.3f, %3$.3f)</string>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Paste BOTH strings as required -->
+    <string name="back4app_app_id">Kcq8fHrHEt37EADZ3Clo84JOE296DgGSbRgdehzW</string>
+    <string name="back4app_client_key">9LYkrRfKk2d8Lt9KdQdiJ10ykenf57DrZB135APk</string>
 
 
 <!--    <string-array name="model_array">-->
