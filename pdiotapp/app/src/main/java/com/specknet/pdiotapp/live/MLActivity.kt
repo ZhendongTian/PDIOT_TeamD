@@ -86,26 +86,26 @@ class MLActivity : AppCompatActivity() {
 
     private lateinit var outputData: java.lang.StringBuilder
 
-    /*val gif_list = arrayOf(
-         R.drawable.walkinggif,
-        "Sitting bent forward",
-        "Sitting bent backward",
-        "Standing",
-        "Lying down left",
-        "Lying down right",
-        "Lying down on stomach",
-        "Lying down on back",
-        "Walking at normal speed",
-        "Running",
-        "Climbing stairs",
-        "Descending stairs",
-        "Desk work",
-        "Movement",
-        "Falling on knees",
-        "Falling on the back",
-        "Falling on the left",
-        "Falling on the right"
-    )*/
+    val gif_list = arrayOf(
+        R.drawable.sittinggif,
+        R.drawable.sittingforwardgif,
+        R.drawable.sittingbackwardgif,
+        R.drawable.standinggif,
+        R.drawable.lyingdownleftgif,
+        R.drawable.lyingdownrightgif,
+        R.drawable.lyingstomachgif,
+        R.drawable.lyingbackgif,
+        R.drawable.walkinggif,
+        R.drawable.runninggif,
+        R.drawable.upstairsgif,
+        R.drawable.downstairs,
+        R.drawable.deskgif,
+        R.drawable.movementgif,
+        R.drawable.fallingkneesgif,
+        R.drawable.fallingbackgif,
+        R.drawable.fallingleftrightgif,
+        R.drawable.fallingleftrightgif
+    )
 
 
     @OptIn(ExperimentalStdlibApi::class)
@@ -218,9 +218,9 @@ class MLActivity : AppCompatActivity() {
                 "Falling on the right"
             )
             val motion = motion_list[class_index]
-            //val gif = gif_list[class_index]
+            val gif = gif_list[class_index]
             activity.setText(motion + ", confidence: " + "${confidence.format(3)}") // Integer.toString(prediction)
-            Glide.with(this).asGif().load(R.drawable.lyingdownleft).into(activeImage);
+            Glide.with(this).asGif().load(gif).into(activeImage);
             outputData.append(motion)
         })
 
