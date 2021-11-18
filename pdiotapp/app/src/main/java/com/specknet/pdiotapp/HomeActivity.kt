@@ -122,6 +122,8 @@ class HomeActivity : AppCompatActivity() {
 
         mlButton.setOnClickListener {
             val intent = Intent(this, MLActivity::class.java)
+            val username = getIntent().getStringExtra("username");
+            intent.putExtra("username", username)
             startActivity(intent)
         }
 
@@ -150,11 +152,15 @@ class HomeActivity : AppCompatActivity() {
 
         imlButton.setOnClickListener {
             val intent = Intent(this, MLActivity::class.java)
+            val username = getIntent().getStringExtra("username");
+            intent.putExtra("username", username)
             startActivity(intent)
         }
 
         ihelpButton.setOnClickListener {
             val intent = Intent(this, HelpActivity::class.java)
+            val username = getIntent().getStringExtra("username");
+            intent.putExtra("username", username)
             startActivity(intent)
         }
     }

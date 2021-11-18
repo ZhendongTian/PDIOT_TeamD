@@ -20,13 +20,13 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.parse.ParseUser
 import com.specknet.pdiotapp.R
 import com.specknet.pdiotapp.utils.Constants
 import com.specknet.pdiotapp.utils.RESpeckLiveData
 import com.specknet.pdiotapp.utils.ThingyLiveData
 import org.tensorflow.lite.Interpreter
-import java.io.FileInputStream
-import java.io.IOException
+import java.io.*
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 
@@ -84,6 +84,8 @@ class MLActivity : AppCompatActivity() {
     val filterTestRespeck = IntentFilter(Constants.ACTION_RESPECK_LIVE_BROADCAST)
     val filterTestThingy = IntentFilter(Constants.ACTION_THINGY_BROADCAST)
 
+    private lateinit var outputData: java.lang.StringBuilder
+
     /*val gif_list = arrayOf(
          R.drawable.walkinggif,
         "Sitting bent forward",
@@ -110,6 +112,7 @@ class MLActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ml)
+        outputData = StringBuilder()
 
         activity = findViewById(R.id.activity)
 //        activity.text = "Movement"
@@ -218,8 +221,7 @@ class MLActivity : AppCompatActivity() {
             //val gif = gif_list[class_index]
             activity.setText(motion + ", confidence: " + "${confidence.format(3)}") // Integer.toString(prediction)
             Glide.with(this).asGif().load(R.drawable.lyingdownleft).into(activeImage);
-
-            //writeToHistory(motion)
+            outputData.append(motion)
         })
 
 
@@ -564,9 +566,36 @@ class MLActivity : AppCompatActivity() {
 
     }
 
-    fun writeToHistory(motion : String){
+    fun writeToHistory(){
         var formattedDate = ""
-        val filename = "${"a"}_${formattedDate}.csv"
+        val currentUser = getIntent().getStringExtra("username");
+        val filename = "${currentUser}_${formattedDate}.csv"
+
+        val file = File(getExternalFilesDir(null), filename)
+        val dataWriter: BufferedWriter
+
+        try{
+            val exists = file.exists()
+            dataWriter = BufferedWriter(OutputStreamWriter(FileOutputStream(file, true)))
+
+            if (!exists) {
+                dataWriter.append("# Motion Type$").append("\n")
+
+                dataWriter.newLine()
+                dataWriter.flush()
+
+                if (outputData.isNotEmpty()) {
+                    dataWriter.write(outputData.toString())
+                    dataWriter.flush()
+                }
+            }
+            dataWriter.close()
+            outputData = StringBuilder()
+            Toast.makeText(this, "Successfully saved motion data!", Toast.LENGTH_SHORT).show()
+        }
+        catch (e: IOException) {
+            Toast.makeText(this, "Error while saving saving!", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
@@ -576,5 +605,6 @@ class MLActivity : AppCompatActivity() {
         unregisterReceiver(thingyLiveUpdateReceiver)
         looperRespeck.quit()
         looperThingy.quit()
+        writeToHistory()
     }
 }
