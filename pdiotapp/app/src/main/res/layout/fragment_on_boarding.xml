@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/section_img"
-            android:layout_width="302dp"
-            android:layout_height="399dp"
+            android:layout_width="358dp"
+            android:layout_height="344dp"
             android:layout_gravity="center"
             android:layout_marginBottom="60dp"
             android:alpha="1.0"

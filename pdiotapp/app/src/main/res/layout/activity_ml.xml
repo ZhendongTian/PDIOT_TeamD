@@ -129,13 +129,13 @@
 
     <ImageView
         android:id="@+id/activeimage"
-        android:layout_width="64dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="44dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
         android:src="@drawable/blank"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

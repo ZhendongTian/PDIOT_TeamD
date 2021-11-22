@@ -66,9 +66,9 @@ class RecordingHelpScreen : AppCompatActivity() {
         mViewPager.setCurrentItem(page)
         updateIndicators(page)
 
-        val color1 = ContextCompat.getColor(this, R.color.cyan)
-        val color2 = ContextCompat.getColor(this, R.color.orange)
-        val color3 = ContextCompat.getColor(this, R.color.green)
+        val color1 = ContextCompat.getColor(this, R.color.accent_500)
+        val color2 = ContextCompat.getColor(this, R.color.accent_500)
+        val color3 = ContextCompat.getColor(this, R.color.accent_500)
 
         val colorList = arrayOf(color1, color2, color3)
         val evaluator = ArgbEvaluator()
