@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.specknet.pdiotapp.R
+import com.specknet.pdiotapp.utils.HelpObject
 import com.specknet.pdiotapp.utils.RecyclerAdapter
 import kotlinx.android.synthetic.main.activity_help.*
 
@@ -17,9 +18,21 @@ class HelpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_help)
 
+        val helpList = mutableListOf<HelpObject>()
+
+        helpList.add(HelpObject())
+        helpList.add(HelpObject())
+        helpList.add(HelpObject())
+        helpList.add(HelpObject())
+        helpList.add(HelpObject())
+
+        for (item in helpList){
+            item.setExpanded(false)
+        }
+
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        adapter = RecyclerAdapter()
+        adapter = RecyclerAdapter(helpList)
         recyclerView.adapter = adapter
 
     }

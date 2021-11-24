@@ -68,6 +68,51 @@
     <string name="back4app_app_id">Kcq8fHrHEt37EADZ3Clo84JOE296DgGSbRgdehzW</string>
     <string name="back4app_client_key">9LYkrRfKk2d8Lt9KdQdiJ10ykenf57DrZB135APk</string>
 
+    <string name="help">Help</string>
+
+    <string name="recording_help_message">
+        In the Record Data activity, you can record your own data and have it saved locally to the phone. \n\n
+
+        You can choose to record with either the Respeck or Thingy by choosing the sensor from the dropdown.
+        You may also choose which of the 18 activities you want to record. When the sensors are connected, the bottom
+        of the screen shows real time position updates from the two sensors. \n\n
+        Finally, you can pass in a recording to a Convolutional Neural Network classifier and it will give you
+        its best guess as to what activity it is.
+    </string>
+
+    <string name="live_help_message">
+        In the Watch Live Processing activity, you can see data being graphed from the sensors in real-time. \n\n
+
+        The three lines correspond to the x, y, and z axes of the sensors. \n\n
+
+        If you do not see any graphs, it is likely that the sensors are not connected—- see Connect Sensors Help page for more info.
+    </string>
+
+    <string name="ml_help_message">
+        In the Do Some ML activity, the system uses Machine Learning to classify your motion in real-time.\n\n
+        When the sensors are connected, you can see their live data. The top of the screen shows the motion prediction.
+        The bottom of the screen shows a pie chart showing the percentage of time you have done each activity for the current session. \n\n
+        Once you leave this section, your prediction data will automatically be stored on the phone. You may access this data by looking at the Event Log, or by checking the phone\'s internal storage.
+    </string>
+
+
+
+    <string name="bluetooth_help_message">
+        In the Connect Sensors activity, you can pair your device with either a Respeck Sensor or a Thingy Sensor.\n\n
+
+        In order to get the best classification, make sure to adhere to the following steps. \n\n
+
+        1. When using the Respeck:\n
+        Make sure the Respeck is secured to the front left side of your torso, just under your ribs.
+        The white part should face outwards, while the blue part should be pressed up against you.
+        Make sure that the words on the blue side are right side up. \n\n
+
+        2. When using the Thingy:\n
+        Make sure the Thingy is placed in your right front pocket with the light facing outwards.\n\n
+
+        Further instructions can be found on the Connect Sensors page itself.
+    </string>
+
 
 <!--    <string-array name="model_array">-->
 <!--        <item>CNN2s</item>-->
