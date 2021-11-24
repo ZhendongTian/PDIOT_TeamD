@@ -15,10 +15,12 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.amplifyframework.AmplifyException
+import com.amplifyframework.api.aws.AWSApiPlugin
 import com.amplifyframework.core.Amplify
 import com.amplifyframework.core.model.temporal.Temporal
 import com.amplifyframework.datastore.AWSDataStorePlugin
 import com.amplifyframework.datastore.generated.model.RespeckData
+import com.amplifyframework.datastore.generated.model.ThingyData
 import com.bumptech.glide.Glide
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.github.mikephil.charting.animation.Easing
@@ -150,13 +152,27 @@ class MLActivity : AppCompatActivity() {
         //Create Amplyfy DataStore Begin
 
         try {
+            Amplify.addPlugin(AWSApiPlugin())
             Amplify.addPlugin(AWSDataStorePlugin())
             Amplify.configure(applicationContext)
-
-            Log.i("Amplify Init", "Init Completed")
-        } catch (failure: AmplifyException){
-            Log.e("Amplify Init", "Init failed",failure)
+            Log.i("Amplify", "Initialized Amplify")
+        } catch (failure: AmplifyException) {
+            Log.e("Amplify", "Could not initialize Amplify", failure)
         }
+
+        Amplify.DataStore.observe(RespeckData::class.java,
+            { Log.i("Amplify", "Observation began.") },
+            { Log.i("Amplify", it.item().toString()) },
+            { Log.e("Amplify", "Observation failed.", it) },
+            { Log.i("Amplify", "Observation complete.") }
+        )
+
+        Amplify.DataStore.observe(ThingyData::class.java,
+            { Log.i("Amplify", "Observation began.") },
+            { Log.i("Amplify", it.item().toString()) },
+            { Log.e("Amplify", "Observation failed.", it) },
+            { Log.i("Amplify", "Observation complete.") }
+        )
 
         val r = Random()
 
