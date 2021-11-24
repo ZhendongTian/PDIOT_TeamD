@@ -1,0 +1,18 @@
+type ThingyData @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  thingy_acc_x: Float
+  thingy_acc_y: Float
+  thingy_acc_z: Float
+  thingy_dataTime: AWSDateTime
+}
+
+type RespeckData @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  res_acc_x: Float!
+  res_acc_y: Float
+  res_acc_z: Float
+  res_gyro_x: Float
+  res_gyro_y: Float
+  res_gyro_z: Float
+  res_dataTime: AWSDateTime
+}
