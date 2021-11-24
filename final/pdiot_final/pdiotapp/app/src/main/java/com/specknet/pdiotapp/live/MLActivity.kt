@@ -382,13 +382,13 @@ class MLActivity : AppCompatActivity() {
 
                     //Adding to DataStore begin
 
-                    acc_x = r.nextFloat();
-                    acc_y = r.nextFloat();
-                    acc_z = r.nextFloat();
+                    //acc_x = r.nextFloat();
+                    //acc_y = r.nextFloat();
+                    //acc_z = r.nextFloat();
 
-                    gyro_x = r.nextFloat();
-                    gyro_y = r.nextFloat();
-                    gyro_z = r.nextFloat();
+                    //gyro_x = r.nextFloat();
+                    //gyro_y = r.nextFloat();
+                    //gyro_z = r.nextFloat();
 
                     val date = Date()
                     val offsetMillis = TimeZone.getDefault().getOffset(date.time).toLong()
@@ -522,6 +522,17 @@ class MLActivity : AppCompatActivity() {
                     val x = liveData.accelX
                     val y = liveData.accelY
                     val z = liveData.accelZ
+
+                    val date = Date()
+                    val offsetMillis = TimeZone.getDefault().getOffset(date.time).toLong()
+                    val offsetSeconds = TimeUnit.MILLISECONDS.toSeconds(offsetMillis).toInt()
+                    val dataTime = Temporal.DateTime(date, offsetSeconds)
+                    val thingyItem = RespeckData.builder().resAccX(x.toDouble()).resAccY(y.toDouble()).resAccZ(z.toDouble()).build()
+
+                    Amplify.DataStore.save(thingyItem,
+                        {Log.i("Saving thingy data", "Success")},
+                        {Log.e("Saving thingy data","Could not save it",it)}
+                    )
 
                     time += 1
                     Log.d("time2", time.toString())
