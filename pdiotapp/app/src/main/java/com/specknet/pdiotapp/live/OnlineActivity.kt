@@ -106,6 +106,7 @@ class OnlineActivity : AppCompatActivity() {
     lateinit var activity: TextView
     lateinit var weightText: TextView
     lateinit var confusionText: TextView
+    lateinit var caliText: TextView
 //    lateinit var c1: TextView
 //    lateinit var c2: TextView
 //    lateinit var visualizeMatrix: TextView
@@ -191,8 +192,12 @@ class OnlineActivity : AppCompatActivity() {
 
 //        val currentUser = getIntent().getStringExtra("username");
         val currentActivityIndex = getIntent().getIntExtra("activity_index", 0)
+        caliText = findViewById(R.id.calibratetext)
+
         Log.d("NNtest", currentActivityIndex.toString())
         activity_index = currentActivityIndex -1
+        var current_calibrate_activity = motion_list[activity_index]
+        caliText.setText("Calibration for $current_calibrate_activity")
         weightText = findViewById(R.id.weight)
         confusionText = findViewById(R.id.misClassify)
 //        visualizeMatrix = findViewById(R.id.visualize)
@@ -267,6 +272,7 @@ class OnlineActivity : AppCompatActivity() {
 
         setupCharts()
 
+        outputData.append(activity_index.toString() + "," +synapsesWeights0.contentToString()+ "\n")  // record the initial identity matrix in order to find the starting point of every recording
 
         // set up the broadcast receiver
         respeckLiveUpdateReceiver = object : BroadcastReceiver() {
@@ -341,7 +347,7 @@ class OnlineActivity : AppCompatActivity() {
                         if(matrixValue>0.05 && ii != activity_index) {
                             wrong_list.add(ii)
                             var wrongActivity = motion_list[ii]
-                            confusionResults += "$wrongActivity with off-set ${matrixValue.toFloat().format(3)}| "
+                            confusionResults += "$wrongActivity with off-set ${matrixValue.toFloat().format(3)}; "
                             confusionResults += "\n"
                         }
                     }
@@ -356,6 +362,8 @@ class OnlineActivity : AppCompatActivity() {
                         weightText.setText(weightString1)
                         confusionText.setText(confusionResults)
                     })
+
+//                    outputData.append( activity_index.toString() + "," +synapsesWeights0.contentToString()+ "\n")
 
                     if(real_time>buffersize){
                         if(real_time.rem(detection_interval) ==0){
@@ -376,11 +384,11 @@ class OnlineActivity : AppCompatActivity() {
                             // try to touch View of UI thread
                             this@OnlineActivity.runOnUiThread(java.lang.Runnable {
                                 activity.setText(motion + ", confidence: " + "${confidence.format(3)}") // Integer.toString(prediction)\
-                                Glide.with(this@OnlineActivity).asGif().load(gif).into(activeImage)
+//                                Glide.with(this@OnlineActivity).asGif().load(gif).into(activeImage)
                             })
 
                             var second:Int = (real_time - buffersize)/25
-                            outputData.append( second.toString() + "," +motion+ "\n")
+
 //                            outputData.append( time.toString() + "," +motion+ "\n")
 
                             if(activity_buffer.size>=activity_buffersize){
@@ -518,7 +526,6 @@ class OnlineActivity : AppCompatActivity() {
 
         // here also do the online training part every 0.5s, and we know what this motion label is! For example lets do all sitting here:
 
-
             val label = doubleArrayOf(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
             if(activity_index!=-1) {
                 label[activity_index] = 1.0
@@ -530,6 +537,8 @@ class OnlineActivity : AppCompatActivity() {
             neuronBiases2 = parameters[1]
             synapsesWeights0 = parameters[2]
             synapsesWeights1 = parameters[3]
+            //saved the updated confusion matrix every prediction/ online training time until converged
+            outputData.append( activity_index.toString() + "," +synapsesWeights0.contentToString()+ "\n")
         }
 
 
@@ -620,17 +629,9 @@ class OnlineActivity : AppCompatActivity() {
     fun writeToHistory(){
 
         val currentUser = getIntent().getStringExtra("username");
-        val currentTime = System.currentTimeMillis()
-        var formattedDate = ""
-        try {
-            formattedDate = SimpleDateFormat("dd-MM-yyyy_HH-mm-ss", Locale.UK).format(Date())
-            Log.i("TAG", "saveRecording: formattedDate = " + formattedDate)
-        } catch (e: Exception) {
-            Log.i("TAG", "saveRecording: error = ${e.toString()}")
-            formattedDate = currentTime.toString()
-        }
-//        val filename = "${currentUser}_${formattedDate}.csv"
-        val filename = "${currentUser}.csv"
+        val currentActivityIndexplus = getIntent().getIntExtra("activity_index", 0)
+        val currentActivityIndex = currentActivityIndexplus -1
+        val filename = "${currentUser}_activity${currentActivityIndex}.csv"
 
         val file = File(getExternalFilesDir(null), filename)
         val dataWriter: BufferedWriter
@@ -641,13 +642,12 @@ class OnlineActivity : AppCompatActivity() {
             dataWriter = BufferedWriter(OutputStreamWriter(FileOutputStream(file, true)))
 
             if (!exists) {
-                Log.d("TAG", "saveRecording: filename doesn't exist")
-
-                // the header columns in here
-//                dataWriter.append("# Motion Type").append("\n")
-
-                dataWriter.write("timestamp,Motion Type")
-
+                var dataWriterString = "activity index,"
+                var lengthMinusOne = synapsesWeights0.size -1
+                for(iii in 0..lengthMinusOne){
+                    dataWriterString += "C[$iii],"
+                }
+                dataWriter.write(dataWriterString)
                 dataWriter.newLine()
                 dataWriter.flush()
             }
@@ -745,8 +745,6 @@ class OnlineActivity : AppCompatActivity() {
 
         return arrayOf(network.neuronBiases[1],network.neuronBiases[2],network.synapsesWeights[0],network.synapsesWeights[1])
     }
-
-
 
 
 

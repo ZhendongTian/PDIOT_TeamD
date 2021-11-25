@@ -31,13 +31,6 @@
             android:layout_height="193dp"
             app:layout_constraintTop_toBottomOf="@id/activity" />
 
-        <TextView
-            android:id="@+id/weight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="7.5sp" />
-
     </LinearLayout>
 
     <TextView
@@ -125,7 +118,33 @@
         android:layout_width="414dp"
         android:layout_height="174dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weight" />
+
+    <TextView
+        android:id="@+id/weight"
+        android:layout_width="422dp"
+        android:layout_height="174dp"
+        android:layout_marginTop="12dp"
+        android:text="TextView"
+        android:textSize="7.5sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calibratetext" />
+
+    <TextView
+        android:id="@+id/calibratetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textColor="#DC5151"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/respeck_graphs" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
