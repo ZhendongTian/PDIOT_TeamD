@@ -58,8 +58,7 @@ class MLActivity : AppCompatActivity() {
     lateinit var pieChart: PieChart
 
     lateinit var activity: TextView
-//    lateinit var modelname2: TextView
-//    lateinit var modelname1: TextView
+
     var acc_xs = arrayListOf<Float>()
     var acc_ys = arrayListOf<Float>()
     var acc_zs = arrayListOf<Float>()
@@ -224,67 +223,7 @@ class MLActivity : AppCompatActivity() {
         initPieChart()
         setDataToPieChart(arrayStats)
 
-
-
-
-
-
-//        modelname2 = findViewById(R.id.model2)
-//        modelname1 = findViewById(R.id.model1)
-
-//        //get the spinner from the xml.
-//        val dropdown = findViewById<Spinner>(R.id.spinner1)
-////create a list of items for the spinner.
-//        val items = arrayOf("2s", "4s", "8s", "custom")
-////create an adapter to describe how the items are displayed, adapters are used in several places in android.
-////There are multiple variations of this, but this is the basic variant.
-//        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
-////set the spinners adapter to the previously created one.
-//        dropdown.adapter = adapter
-//        var simpleModelName = dropdown.selectedItem.toString()  //default is the first one in the dropbox
-//        var simpleModelID: Int = dropdown.selectedItemId.toInt()
-//
-//        dropdown.onItemSelectedListener = object :
-//            AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>,
-//                                        view: View, position: Int, id: Long) {
-//                simpleModelName = dropdown.selectedItem.toString()
-//                simpleModelID = dropdown.selectedItemId.toInt()
-//                Log.d("myTag", simpleModelID.toString())
-//                modelname2.setText(simpleModelName)
-//                modelname2.setTextColor(Color.BLUE)
-//            }
-//            override fun onNothingSelected(parent: AdapterView<*>) {
-//                // write code to perform some action
-//            }
-//        }
-//
-//        val dropdown2 = findViewById<Spinner>(R.id.spinner2)
-//        val items2 = arrayOf("CNN", "LSTM", "GRU", "biLSTM", "CNNbiLSTM", "ResNet", "ConvMix", "test")
-//        val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items2)
-////set the spinners adapter to the previously created one.
-//        dropdown2.adapter = adapter2
-//        var baseModelName = dropdown2.selectedItem.toString()
-//        dropdown2.onItemSelectedListener = object :
-//            AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>,
-//                                        view: View, position: Int, id: Long) {
-//                baseModelName = dropdown2.selectedItem.toString()
-//                modelname1.setText(baseModelName)
-//                modelname1.setTextColor(Color.MAGENTA);
-//            }
-//            override fun onNothingSelected(parent: AdapterView<*>) {
-//            }
-//        }
-
-
-
-
-//            val interpreterOptions = Interpreter.Options().apply {setNumThreads(4)}  // Number of threads for computation
-        // Initialize TF Lite Interpreter with NNAPI enabled
-//        var delegate: GpuDelegate? = null
-//        delegate = GpuDelegate()
-//        var options = Interpreter.Options().addDelegate(delegate)
+        // adding GPU delegate and the NNAPI (for CPU, for LSTM operations) optimization
         val compatList = CompatibilityList()
         Log.d("MyTag","Using GPU: "+ compatList.isDelegateSupportedOnThisDevice.toString())
         val options = Interpreter.Options().apply{
@@ -314,50 +253,7 @@ class MLActivity : AppCompatActivity() {
 
         Log.d("MyTag", "Load tfLite model succeed")
 
-//            val options = Interpreter.Options()
-//        options.setUseNNAPI(true)
-//        tflite = Interpreter(loadModelFile(baseModelName,simpleModelName), options)
-//        Log.d("MyTag", "Success3")
-
-
-//        val detect = findViewById<View>(R.id.detect) as Button
-//        detect.setOnClickListener(View.OnClickListener {
-//            //                float prediction = inference(input.getText().toString());
-//            val results: Array<Any> = inference(baseModelName,simpleModelID, simpleModelName,acc_xs, acc_ys, acc_zs, gyro_xs, gyro_ys, gyro_zs)
-//            val class_index = results[0] as Int
-//            val confidence = results[1] as Float
-//            Log.d(
-//                "myTag",
-//                Integer.toString(class_index) + " , " + java.lang.Float.toString(confidence)
-//            )
-//            val motion_list = arrayOf(
-//                "Sitting",
-//                "Sitting bent forward",
-//                "Sitting bent backward",
-//                "Standing",
-//                "Lying down left",
-//                "Lying down right",
-//                "Lying down on stomach",
-//                "Lying down on back",
-//                "Walking at normal speed",
-//                "Running",
-//                "Climbing stairs",
-//                "Descending stairs",
-//                "Desk work",
-//                "Movement",
-//                "Falling on knees",
-//                "Falling on the back",
-//                "Falling on the left",
-//                "Falling on the right"
-//            )
-//            val motion = motion_list[class_index]
-//            activity.setText(motion + ", confidence: " + "${confidence.format(3)}") // Integer.toString(prediction)
-//        })
-
-
-
         setupCharts()
-
 
         // set up the broadcast receiver
         respeckLiveUpdateReceiver = object : BroadcastReceiver() {
@@ -396,30 +292,6 @@ class MLActivity : AppCompatActivity() {
                     var gyro_y = liveData.gyro.y
                     var gyro_z = liveData.gyro.z
 
-                    //Adding to DataStore begin
-
-                    //acc_x = r.nextFloat();
-                    //acc_y = r.nextFloat();
-                    //acc_z = r.nextFloat();
-
-                    //gyro_x = r.nextFloat();
-                    //gyro_y = r.nextFloat();
-                    //gyro_z = r.nextFloat();
-
-                    val date = Date()
-                    val offsetMillis = TimeZone.getDefault().getOffset(date.time).toLong()
-                    val offsetSeconds = TimeUnit.MILLISECONDS.toSeconds(offsetMillis).toInt()
-                    val dataTime = Temporal.DateTime(date, offsetSeconds)
-                    val respeckItem = RespeckData.builder().resAccX(acc_x.toDouble()).resAccY(acc_y.toDouble()).resAccZ(acc_z.toDouble()).resGyroX(gyro_x.toDouble()).resGyroY(gyro_y.toDouble()).resGyroZ(gyro_z.toDouble()).resDataTime(dataTime).build()
-
-                    Amplify.DataStore.save(respeckItem,
-                        {Log.i("Saving respeck data", "Success")},
-                        {Log.e("Saving respeck data","Could not save it",it)}
-                        )
-
-                    //Adding to DataStore end
-
-
                     if(gyro_xs.size>=buffersize){
                         gyro_xs.removeFirst()
                     }
@@ -433,6 +305,22 @@ class MLActivity : AppCompatActivity() {
                     gyro_xs.add(gyro_x)
                     gyro_ys.add(gyro_y)
                     gyro_zs.add(gyro_z)
+
+
+                    // adding the data to the cloud using AWS amplify
+                    val date = Date()
+                    val offsetMillis = TimeZone.getDefault().getOffset(date.time).toLong()
+                    val offsetSeconds = TimeUnit.MILLISECONDS.toSeconds(offsetMillis).toInt()
+                    val dataTime = Temporal.DateTime(date, offsetSeconds)
+                    val respeckItem = RespeckData.builder().resAccX(acc_x.toDouble()).resAccY(acc_y.toDouble()).resAccZ(acc_z.toDouble()).resGyroX(gyro_x.toDouble()).resGyroY(gyro_y.toDouble()).resGyroZ(gyro_z.toDouble()).resDataTime(dataTime).build()
+
+                    Amplify.DataStore.save(respeckItem,
+                        {Log.i("Saving respeck data", "Success")},
+                        {Log.e("Saving respeck data","Could not save it",it)}
+                        )
+
+                    //Adding to DataStore end
+
 
                     //doing perdiction automatically here within every 1s (25 frame)
                     if(real_time>buffersize){
@@ -484,21 +372,17 @@ class MLActivity : AppCompatActivity() {
                                 activity_buffer.removeFirst()
                             }
                             activity_buffer.add(class_index)
-
                         }
-
 //                        //read data from saved file:
 //                        if(real_time.rem(detection_interval) ==0) {
 //                            var all_data = readFromCsv()
 //                            Log.d("all_data", all_data[all_data.size - 1].toString())
 //                        }
-
                     }
 
 //                    Log.d("myTag", gyro_zs.size.toString())
 
                     real_time += 1
-
                     time += 1
                     Log.d("time1", time.toString())
                     updateGraph("respeck", acc_x, acc_y, acc_z)
@@ -594,34 +478,7 @@ class MLActivity : AppCompatActivity() {
         gyro_zs: ArrayList<Float>
     ): Array<Any> {
 
-//        val compatList = CompatibilityList()
-//        Log.d("MyTag","Using GPU: "+ compatList.isDelegateSupportedOnThisDevice.toString())
-//
-//        val options = Interpreter.Options().apply{
-//            if(compatList.isDelegateSupportedOnThisDevice){
-//                // if the device has a supported GPU, add the GPU delegate
-//                Log.d("MyTag", "Success3")
-//                val delegateOptions = compatList.bestOptionsForThisDevice
-//                this.addDelegate(GpuDelegate(delegateOptions))
-//                Log.d("MyTag", "Success2")
-//            } else {
-//                // if the GPU is not supported, run on 4 threads
-//                this.setNumThreads(4)
-//
-//                val list = listOf("LSTM", "GRU", "biLSTM", "CNNbiLSTM")
-//                if(baseModelName in list) {
-//                   this.setUseNNAPI(true)    //LSTM model using NNAPI is fast but not Conv model
-//                    Log.d("MyTag", "Using NNAPI")
-//                }
-//                Log.d("MyTag", "Success1")
-//            }
-//        }
-//
-//        try {
-//            tflite = Interpreter(loadModelFile(baseModelName,simpleModelName), options)
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
+//        Set changeable dynamical time window for diffrent activity detecytion
 //        timestep = Math.pow(2.0, ((simpleModelID+1).toDouble())).toInt() * 25
 
         timestep = 100
@@ -630,13 +487,6 @@ class MLActivity : AppCompatActivity() {
         }
         Log.d("myTag", timestep.toString() + " timesteps (sliding window)")
 
-
-
-        // A 6x5 array of Int, all set to 0.
-//        var inputValue = Array(1) { Array(50) { Array(6) { 0f } } }
-//        var m = Array(6, {i -> Array(5, {j -> 0})})
-        //        inputValue[0] = Float.valueOf(s);
-//        var outputValue =  Array(1) { Array(18) { 0f } }
 
         val inputValue = Array(1) {
             Array(timestep) {
@@ -675,14 +525,8 @@ class MLActivity : AppCompatActivity() {
 
         tflite.run(inputValue, outputValue)
 
-
-//        int index = argmax(outputValue[0]);
         //Obtained highest prediction
-        //        int index = argmax(outputValue[0]);
-        //Obtained highest prediction
-
         return argmax(outputValue.get(0))
-
     }
 
     fun argmax(array: FloatArray): Array<Any> {
@@ -848,12 +692,10 @@ class MLActivity : AppCompatActivity() {
 
             if (!exists) {
                 Log.d("TAG", "saveRecording: filename doesn't exist")
-
                 // the header columns in here
 //                dataWriter.append("# Motion Type").append("\n")
 
                 dataWriter.write("timestamp,Motion Type")
-
                 dataWriter.newLine()
                 dataWriter.flush()
             }
@@ -919,8 +761,7 @@ class MLActivity : AppCompatActivity() {
         var second_index = arrayStats.indexOf(second)
         var third_index = arrayStats.indexOf(third)
         var sum = arrayStats.sum()
-        Log.d("test", first.toString() + " "+ second.toString()+ " "+first_index.toString()+ " "+second_index.toString() )
-
+//        Log.d("test", first.toString() + " "+ second.toString()+ " "+first_index.toString()+ " "+second_index.toString() )
 
         pieChart.setUsePercentValues(true)
         val dataEntries = ArrayList<PieEntry>()
@@ -953,18 +794,12 @@ class MLActivity : AppCompatActivity() {
         pieChart.isDrawHoleEnabled = true
         pieChart.setHoleColor(Color.WHITE)
 
-
         //add text in center
         pieChart.setDrawCenterText(true);
         pieChart.centerText = "Activity Summary"
 
-
-
         pieChart.invalidate()
-
     }
-
-
 
 
     override fun onDestroy() {
