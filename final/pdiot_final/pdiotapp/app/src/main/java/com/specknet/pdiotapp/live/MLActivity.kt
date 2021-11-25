@@ -333,26 +333,7 @@ class MLActivity : AppCompatActivity() {
                                 "myTag",
                                 Integer.toString(class_index) + " , " + java.lang.Float.toString(confidence)
                             )
-//                            val motion_list = arrayOf(
-//                                "Sitting",
-//                                "Sitting bent forward",
-//                                "Sitting bent backward",
-//                                "Standing",
-//                                "Lying down left",
-//                                "Lying down right",
-//                                "Lying down on stomach",
-//                                "Lying down on back",
-//                                "Walking at normal speed",
-//                                "Running",
-//                                "Climbing stairs",
-//                                "Descending stairs",
-//                                "Desk work",
-//                                "Movement",
-//                                "Falling on knees",
-//                                "Falling on the back",
-//                                "Falling on the left",
-//                                "Falling on the right"
-//                            )
+
                             val motion = motion_list[class_index]
                             val gif = gif_list[class_index]
 //                            activity.setText(motion + ", confidence: " + "${confidence.format(3)}") // Integer.toString(prediction)\
@@ -379,8 +360,6 @@ class MLActivity : AppCompatActivity() {
 //                            Log.d("all_data", all_data[all_data.size - 1].toString())
 //                        }
                     }
-
-//                    Log.d("myTag", gyro_zs.size.toString())
 
                     real_time += 1
                     time += 1
