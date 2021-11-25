@@ -44,6 +44,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var irecordButton: AppCompatImageButton
     lateinit var imlButton: AppCompatImageButton
     lateinit var ihelpButton: AppCompatImageButton
+    lateinit var settingsButton: AppCompatImageButton
 
     // permissions
     lateinit var permissionAlertDialog: AlertDialog.Builder
@@ -88,6 +89,7 @@ class HomeActivity : AppCompatActivity() {
         irecordButton = findViewById(R.id.irecord_button)
         imlButton = findViewById(R.id.iml_button)
         ihelpButton = findViewById(R.id.ihelp_button)
+        settingsButton = findViewById(R.id.isettings_button)
 
 
         permissionAlertDialog = AlertDialog.Builder(this)
@@ -161,6 +163,11 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, HelpActivity::class.java)
             val username = getIntent().getStringExtra("username");
             intent.putExtra("username", username)
+            startActivity(intent)
+        }
+
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
     }
@@ -334,7 +341,6 @@ class HomeActivity : AppCompatActivity() {
             startActivity(introIntent)
             return true
         }*/
-
         return super.onOptionsItemSelected(item)
     }
 
