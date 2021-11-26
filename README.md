@@ -1,4 +1,8 @@
 # PDIOT_TeamD
+
+# !NEW VERSION:
+https://github.com/jerryzhao173985/pdiot-app
+
 ## PDIOT Prototype
 Models of different window_size(1-sec, 2-sec, 5-sec, 10-sec) for faster classification.
 
