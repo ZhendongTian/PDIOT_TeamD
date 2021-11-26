@@ -38,8 +38,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         try{
             ParseUser currentUser = ParseUser.getCurrentUser();
-            String number = currentUser.getString("emergencyContact");
-            contactDetails.setText(number);
+            String contact = currentUser.getString("emConString");
+            contactDetails.setText(contact);
         } catch (Exception e) {
         }
 
@@ -78,11 +78,13 @@ public class SettingsActivity extends AppCompatActivity {
     private void registerContact(String number1) throws ParseException {
         // convert string to int
 
+        int number = Integer.parseInt(number1);
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
             // Other attributes than "email" will remain unchanged!
-            currentUser.put("emergencyContact", number1);
+            currentUser.put("emergencyContact", number);
+            currentUser.put("emConString", number1);
 
             // Saves the object.
             currentUser.saveInBackground(e -> {
@@ -97,7 +99,8 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         TextView contactDetails = findViewById(R.id.contact_list);
-        contactDetails.setText(currentUser.getString("emergencyContact"));
+
+        contactDetails.setText(currentUser.getString("emConString"));
 
     }
 }
