@@ -27,6 +27,7 @@ import com.specknet.pdiotapp.utils.Constants
 import com.specknet.pdiotapp.utils.Utils
 import com.specknet.pdiotapp.help.HelpActivity
 import com.specknet.pdiotapp.live.OnlineActivity
+import com.specknet.pdiotapp.live.OnlinePrediction
 import kotlinx.android.synthetic.main.activity_home.*
 
 class CalibrateActivity : AppCompatActivity() {
@@ -50,6 +51,7 @@ class CalibrateActivity : AppCompatActivity() {
     lateinit var activity16: AppCompatImageButton
     lateinit var activity17: AppCompatImageButton
     lateinit var activity18: AppCompatImageButton
+    lateinit var onlinePrediction: Button
 
     // permissions
     lateinit var permissionAlertDialog: AlertDialog.Builder
@@ -86,6 +88,8 @@ class CalibrateActivity : AppCompatActivity() {
         activity16 = findViewById(R.id.activity16)
         activity17 = findViewById(R.id.activity17)
         activity18 = findViewById(R.id.activity18)
+
+        onlinePrediction = findViewById(R.id.onlineperdiction)
 
         permissionAlertDialog = AlertDialog.Builder(this)
 
@@ -224,6 +228,14 @@ class CalibrateActivity : AppCompatActivity() {
         }
         activity18.setOnClickListener {
             val intent = Intent(this, OnlineActivity::class.java)
+            val username = getIntent().getStringExtra("username");
+            intent.putExtra("username", username)
+            intent.putExtra("activity_index", 18)
+            startActivity(intent)
+        }
+
+        onlinePrediction.setOnClickListener {
+            val intent = Intent(this, OnlinePrediction::class.java)
             val username = getIntent().getStringExtra("username");
             intent.putExtra("username", username)
             intent.putExtra("activity_index", 18)

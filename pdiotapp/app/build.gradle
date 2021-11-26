@@ -87,6 +87,8 @@ dependencies {
     implementation 'com.amplifyframework:aws-api:1.30.0'
     implementation 'com.amplifyframework:aws-datastore:1.30.0'
 
-    implementation "org.jetbrains.anko:anko:0.10.8"
+//    implementation "org.jetbrains.anko:anko:0.10.8"
+
+//    implementation 'com.google.android.material:material:1.0.0'
 
 }

@@ -125,6 +125,26 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".live.OnlinePrediction"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.specknet.respeck.RESPECK_LIVE_BROADCAST" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.specknet.respeck.ACTION_RESPECK_LIVE_BROADCAST" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.specknet.respeck.ACTION_RESPECK_REHAB_BROADCAST" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.specknet.respeck.RESPECK_REHAB_BROADCAST" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.specknet.pdiotapp.RESPECK_BROADCAST" />
+            </intent-filter>
+        </activity>
+
 
 
         <activity

@@ -27,6 +27,7 @@ import com.specknet.pdiotapp.utils.Constants
 import com.specknet.pdiotapp.utils.Utils
 import com.specknet.pdiotapp.help.HelpActivity
 import com.specknet.pdiotapp.live.OnlineActivity
+import com.specknet.pdiotapp.live.OnlinePrediction
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -88,6 +89,7 @@ class HomeActivity : AppCompatActivity() {
         logoutButton = findViewById(R.id.logout_button)
         helpButton = findViewById(R.id.help_button)
 
+
         //initialize image buttons
         iliveProcessingButton = findViewById(R.id.ilive_button)
         ipairingButton = findViewById(R.id.ible_button)
@@ -134,6 +136,7 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra("username", username)
             startActivity(intent)
         }
+
 
         calibrateButton.setOnClickListener {
             val intent = Intent(this, CalibrateActivity::class.java)
