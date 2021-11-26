@@ -173,11 +173,6 @@
         </activity>
 
         <activity
-            android:name=".help.RecordingHelpScreen"
-            android:screenOrientation="portrait" >
-        </activity>
-
-        <activity
             android:name=".RegistrationActivity"
             android:screenOrientation="portrait" >
         </activity>

@@ -10,7 +10,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-12dp">
 
         <!-- <ImageView
             android:id="@+id/imageView5"
@@ -60,23 +62,10 @@
             app:layout_constraintVertical_bias="0.289"
             app:srcCompat="@drawable/button2" /> -->
 
-        <TextView
-            android:id="@+id/helptext"
-            android:layout_width="59dp"
-            android:layout_height="33dp"
-            android:layout_marginEnd="16dp"
-            android:text="Help"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ihelp_button" />
-
         <ImageButton
             android:id="@+id/ilive_button"
-            android:layout_width="123dp"
-            android:layout_height="98dp"
+            android:layout_width="118dp"
+            android:layout_height="92dp"
             android:adjustViewBounds="true"
             android:background="@android:color/transparent"
             android:maxWidth="100dp"
@@ -84,29 +73,30 @@
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.843"
+            app:layout_constraintHorizontal_bias="0.806"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.197"
+            app:layout_constraintVertical_bias="0.177
+"
             app:srcCompat="@drawable/button2" />
 
         <Button
             android:id="@+id/live_button"
-            android:layout_width="163dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="151dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
             android:background="#696969"
             android:text="Watch live processing"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.903"
+            app:layout_constraintHorizontal_bias="0.853"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ilive_button" />
 
         <ImageButton
             android:id="@+id/activity4"
-            android:layout_width="132dp"
-            android:layout_height="114dp"
+            android:layout_width="125dp"
+            android:layout_height="100dp"
             android:adjustViewBounds="true"
             android:background="@android:color/transparent"
             android:maxWidth="100dp"
@@ -114,29 +104,29 @@
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintHorizontal_bias="0.167"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.202"
+            app:layout_constraintVertical_bias="0.179"
             app:srcCompat="@drawable/button1" />
 
         <Button
             android:id="@+id/sitting"
-            android:layout_width="163dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="151dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
             android:background="#696969"
             android:text="Record data"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintHorizontal_bias="0.138"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activity4" />
 
         <ImageButton
             android:id="@+id/ible_button"
-            android:layout_width="130dp"
-            android:layout_height="113dp"
+            android:layout_width="116dp"
+            android:layout_height="99dp"
             android:adjustViewBounds="true"
             android:background="@android:color/transparent"
             android:maxWidth="100dp"
@@ -144,104 +134,121 @@
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.864"
+            app:layout_constraintHorizontal_bias="0.81"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.542"
             app:srcCompat="@drawable/button4" />
+
+        <ImageButton
+            android:id="@+id/iml_button"
+            android:layout_width="119dp"
+            android:layout_height="101dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:maxWidth="100dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.184"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.501"
+            app:srcCompat="@drawable/button3" />
 
         <Button
             android:id="@+id/ble_button"
-            android:layout_width="163dp"
-            android:layout_height="46dp"
+            android:layout_width="151dp"
+            android:layout_height="40dp"
             android:background="#696969"
             android:text="Connect sensors"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.907"
+            app:layout_constraintHorizontal_bias="0.853"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ible_button"
-            app:layout_constraintVertical_bias="0.042" />
-
-        <ImageButton
-            android:id="@+id/iml_button"
-            android:layout_width="144dp"
-            android:layout_height="113dp"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:maxWidth="100dp"
-            android:maxHeight="100dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.108"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.542"
-            app:srcCompat="@drawable/button3" />
-
-        <ImageButton
-            android:id="@+id/icalibration"
-            android:layout_width="159dp"
-            android:layout_height="132dp"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:maxWidth="100dp"
-            android:maxHeight="100dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.063"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.899"
-            app:srcCompat="@drawable/calibrate" />
+            app:layout_constraintVertical_bias="0.054" />
 
         <Button
             android:id="@+id/ml_button"
-            android:layout_width="163dp"
-            android:layout_height="46dp"
+            android:layout_width="151dp"
+            android:layout_height="40dp"
             android:background="#696969"
             android:text="Do Some ML"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintHorizontal_bias="0.138"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iml_button"
-            app:layout_constraintVertical_bias="0.046" />
+            app:layout_constraintVertical_bias="0.047" />
 
-        <Button
-            android:id="@+id/calibration"
-            android:layout_width="163dp"
-            android:layout_height="46dp"
-            android:background="#696969"
-            android:text="Calibrate"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.068"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iml_button"
-            app:layout_constraintVertical_bias="0.932" />
+        <!--button for making user log out-->
 
         <ImageButton
             android:id="@+id/ihelp_button"
-            android:layout_width="59dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="148dp"
+            android:layout_height="107dp"
+            android:layout_marginTop="36dp"
             android:adjustViewBounds="true"
             android:background="@android:color/transparent"
             android:maxWidth="100dp"
             android:maxHeight="100dp"
             android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.855"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.819"
             app:srcCompat="@drawable/button5" />
 
-        <!--button for making user log out-->
+        <ImageButton
+            android:id="@+id/icalibration"
+            android:layout_width="147dp"
+            android:layout_height="107dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:maxWidth="100dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.143"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.83"
+            app:srcCompat="@drawable/calibrate" />
+
+        <Button
+            android:id="@+id/calibration"
+            android:layout_width="151dp"
+            android:layout_height="40dp"
+            android:background="#696969"
+            android:text="Calibrate"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.146"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icalibration"
+            app:layout_constraintVertical_bias="0.166" />
+
+        <Button
+            android:id="@+id/help_button"
+            android:layout_width="151dp"
+            android:layout_height="40dp"
+            android:background="#696969"
+            android:text="Help"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.853"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ihelp_button"
+            app:layout_constraintVertical_bias="0.166" />
+
         <Button
             android:id="@+id/logout_button"
             android:layout_width="wrap_content"
@@ -260,13 +267,13 @@
             android:id="@+id/isettings_button"
             android:layout_width="59dp"
             android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:maxWidth="100dp"
             android:maxHeight="100dp"
             android:scaleType="fitCenter"
-            app:layout_constraintEnd_toStartOf="@+id/ihelp_button"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/button6" />
 
@@ -274,13 +281,13 @@
             android:id="@+id/settingstext"
             android:layout_width="59dp"
             android:layout_height="33dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
             android:text="Settings"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/helptext"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/isettings_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

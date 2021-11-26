@@ -75,9 +75,7 @@
 
         You can choose to record with either the Respeck or Thingy by choosing the sensor from the dropdown.
         You may also choose which of the 18 activities you want to record. When the sensors are connected, the bottom
-        of the screen shows real time position updates from the two sensors. \n\n
-        Finally, you can pass in a recording to a Convolutional Neural Network classifier and it will give you
-        its best guess as to what activity it is.
+        of the screen shows real time position updates from the two sensors.
     </string>
 
     <string name="live_help_message">
@@ -111,6 +109,12 @@
         Make sure the Thingy is placed in your right front pocket with the light facing outwards.\n\n
 
         Further instructions can be found on the Connect Sensors page itself.
+    </string>
+
+    <string name="calibrate_help_message">
+        In the Calibrate Activity, you can train a Deep Learning model based on your own unique movement.\n\n
+        First, click on the activity you would like to train the model on. There are 18 different activities you can choose from. \n\n
+        Then, perform each activity while the sensor is connected to your body and watch the accuracy of the model improve over time!
     </string>
 
 

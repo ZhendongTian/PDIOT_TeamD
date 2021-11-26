@@ -162,19 +162,6 @@
             app:layout_constraintVertical_bias="0.338"
             app:srcCompat="@drawable/lyingstomachgif" />
 
-        <TextView
-            android:id="@+id/helptext"
-            android:layout_width="59dp"
-            android:layout_height="33dp"
-            android:layout_marginEnd="16dp"
-            android:text="Help"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ihelp_button" />
-
         <ImageButton
             android:id="@+id/activity4"
             android:layout_width="74dp"
@@ -279,8 +266,8 @@
 
         <ImageButton
             android:id="@+id/activity16"
-            android:layout_width="74dp"
-            android:layout_height="66dp"
+            android:layout_width="92dp"
+            android:layout_height="79dp"
             android:adjustViewBounds="true"
             android:background="@android:color/transparent"
             android:maxWidth="100dp"
@@ -288,7 +275,7 @@
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.952"
+            app:layout_constraintHorizontal_bias="0.949"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.642"
@@ -296,8 +283,8 @@
 
         <ImageButton
             android:id="@+id/activity14"
-            android:layout_width="74dp"
-            android:layout_height="66dp"
+            android:layout_width="75dp"
+            android:layout_height="67dp"
             android:adjustViewBounds="true"
             android:background="@android:color/transparent"
             android:maxWidth="100dp"
@@ -309,7 +296,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.642"
-            app:srcCompat="@drawable/movementgif" />
+            app:srcCompat="@drawable/movement" />
 
         <ImageButton
             android:id="@+id/activity13"
@@ -330,8 +317,8 @@
 
         <ImageButton
             android:id="@+id/activity15"
-            android:layout_width="74dp"
-            android:layout_height="66dp"
+            android:layout_width="82dp"
+            android:layout_height="74dp"
             android:adjustViewBounds="true"
             android:background="@android:color/transparent"
             android:maxWidth="100dp"
@@ -339,10 +326,10 @@
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.679"
+            app:layout_constraintHorizontal_bias="0.671"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.642"
+            app:layout_constraintVertical_bias="0.645"
             app:srcCompat="@drawable/fallknee" />
 
         <ImageButton
@@ -379,62 +366,33 @@
             app:layout_constraintVertical_bias="0.79"
             app:srcCompat="@drawable/fallright" />
 
-        <ImageButton
-            android:id="@+id/ihelp_button"
-            android:layout_width="59dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:maxWidth="100dp"
-            android:maxHeight="100dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/button5" />
-
-        <!--button for making user log out-->
-        <Button
-            android:id="@+id/logout_button"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Log Out"
-            android:textAllCaps="false"
+            android:layout_marginBottom="40dp"
+            android:text="Calibration Center"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.035" />
-
-        <ImageButton
-            android:id="@+id/isettings_button"
-            android:layout_width="59dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
-            android:background="@android:color/transparent"
-            android:maxWidth="100dp"
-            android:maxHeight="100dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toStartOf="@+id/ihelp_button"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/button6" />
+            app:layout_constraintVertical_bias="0.077" />
 
         <TextView
-            android:id="@+id/settingstext"
-            android:layout_width="59dp"
-            android:layout_height="33dp"
-            android:layout_marginEnd="24dp"
-            android:text="Settings"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/helptext"
-            app:layout_constraintTop_toBottomOf="@+id/isettings_button" />
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="64dp"
+            android:text="Click on an activity to calibrate it to your own body!"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!--button for making user log out-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

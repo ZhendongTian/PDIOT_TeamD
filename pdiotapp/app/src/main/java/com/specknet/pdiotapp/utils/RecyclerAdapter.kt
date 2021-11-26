@@ -8,19 +8,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.specknet.pdiotapp.HomeActivity
 import com.specknet.pdiotapp.R
-import com.specknet.pdiotapp.help.RecordingHelpScreen
 import android.widget.LinearLayout
 import com.specknet.pdiotapp.Animations.Animations
 
 
 class RecyclerAdapter (hl: MutableList<HelpObject>) :RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    private var titles = arrayOf("Recording Help", "Live Data Help", "Machine Learning Help", "Connecting Sensors Help") //,"Event Log")
-    private var images = arrayOf(R.drawable.button1, R.drawable.button2, R.drawable.button3, R.drawable.button4)//, R.drawable.ic_recording_icon)
+    private var titles = arrayOf("Recording Help", "Live Data Help", "Machine Learning Help", "Connecting Sensors Help", "Calibrate Help")
+    private var images = arrayOf(R.drawable.button1, R.drawable.button2, R.drawable.button3, R.drawable.button4, R.drawable.calibrate)
     private var desc = arrayOf(R.string.recording_help_message, R.string.live_help_message,
-        R.string.ml_help_message, R.string.bluetooth_help_message)//, R.drawable.ic_recording_icon)
+        R.string.ml_help_message, R.string.bluetooth_help_message, R.string.calibrate_help_message)
 
     private var helpList = hl
 

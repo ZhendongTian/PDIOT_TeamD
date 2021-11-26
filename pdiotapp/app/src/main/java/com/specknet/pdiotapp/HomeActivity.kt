@@ -38,6 +38,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var mlButton: Button
     lateinit var calibrateButton: Button
     lateinit var logoutButton: Button
+    lateinit var helpButton: Button
 
     //image buttons
     lateinit var iliveProcessingButton: AppCompatImageButton
@@ -85,6 +86,7 @@ class HomeActivity : AppCompatActivity() {
         mlButton = findViewById(R.id.ml_button)
         calibrateButton = findViewById(R.id.calibration)
         logoutButton = findViewById(R.id.logout_button)
+        helpButton = findViewById(R.id.help_button)
 
         //initialize image buttons
         iliveProcessingButton = findViewById(R.id.ilive_button)
@@ -146,6 +148,13 @@ class HomeActivity : AppCompatActivity() {
                 Toast.makeText(this, "User Logged Out", Toast.LENGTH_SHORT).show();
                 val intent = Intent(this, LoginActivity::class.java);
                 startActivity(intent)}}
+        }
+
+        helpButton.setOnClickListener {
+            val intent = Intent(this, HelpActivity::class.java)
+            val username = getIntent().getStringExtra("username");
+            intent.putExtra("username", username)
+            startActivity(intent)
         }
 
         iliveProcessingButton.setOnClickListener {
